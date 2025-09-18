@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About – That Smell</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: "Arial Narrow", Arial, sans-serif; /* keep Arial Narrow */
+      background: white;
+      color: #b3b3b3;
+      overflow-x: hidden;
+      cursor: none; /* hide default cursor */
+    }
+
+    /* Description text starts at 50% width and 5px from top */
+    .description {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      width: 50%; /* covers right half */
+      font-size: 18px;
+      line-height: 19px;
+      white-space: pre-line;
+      text-align: left;
+    }
+
+    /* Back link at bottom, aligned with description */
+    .back-link {
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      font-size: 18px;
+      color: #b3b3b3;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: #000000;
+    }
+
+    /* Custom yellow cursor */
+    .cursor {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #FF6600;
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s ease, height 0.2s ease;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Description text -->
+  <div class="description">Located in Athens, Greece, it has an excessive inquisitiveness about printed matters and typography. Through observation and a process of trial and error — using both analogue and digital methods — it develops assorted visual systems. With several years of experience in various design agencies, and involvement in projects for a diverse range of clients from Greece and abroad, the practice has cultivated a versatile and adaptive approach to design. Each project is approached with curiosity, careful research, and a balance between conceptual thinking and functional execution. The design process places equal weight on clarity, experimentation, and storytelling, resulting in work that is both thoughtful and communicative.
+
+Yiannis Mallis
+_1993
+_+(30)6984375714
+_mallisyiannis@gmail.com
+
+Education
+_2011 → 2013_IEK Praxis_Athens_(GR)
+_2019 → 2020_Royal_Academy_of_Art_The_Hague_(NL)
+
+Experience
+_Oct.2014 → Mar.2015_K2_Design_(GR)
+_Oct.2015 → Jan-2016_Benaki_Museum_Shop_(GR)
+_Jun.2016 → Oct.2018_Mousegraphics_(GR)
+_Nov.2020 → April.2023_Caparo_Design_Crew_(GR)
+
+Awards
+_2016_2nd_Place_Poster_Design_Museum_of_Typography
+_2017_Studio_of_the_Year_Pentawards_Mousegraphics
+_2018_Studio_of_the_Year_Pentawards_Mousegraphics
+_2018_2nd_Place_Novanta_Sei_(96)_Pentawards_Mousegraphics
+_2018_Studio_of_the_Year_The Dieline_Mousegraphics
+_2020_3rd_Place_Provamel_Pentawards_Mousegraphics
+  </div>
+
+  <!-- Back link -->
+  <a href="index.html" class="back-link">Back</a>
+
+  <!-- Custom yellow cursor -->
+  <div class="cursor"></div>
+
+  <script>
+    const cursor = document.querySelector('.cursor');
+
+    // Move cursor with mouse
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    // Grow cursor when hovering links or buttons
+    const hoverElements = document.querySelectorAll('a, button');
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '15px';
+        cursor.style.height = '15px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '10px';
+        cursor.style.height = '10px';
+      });
+    });
+  </script>
+
+</body>
+</html>
