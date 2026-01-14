@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullscreen Video with Text and Cursor</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      cursor: none; /* hide default cursor */
+    }
+
+    .video-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: black;
+    }
+
+    /* About link styling */
+    .about-link {
+      position: fixed;
+      bottom: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      font-size: 18px;
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+      z-index: 10;
+    }
+
+    .about-link:hover {
+      color: red;
+    }
+
+    /* Sound toggle styling - bottom left */
+    .sound-toggle {
+      position: fixed;
+      bottom: 7px;
+      left: 5px;
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      font-size: 18px;
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s;
+      z-index: 10;
+    }
+
+    .sound-toggle:hover {
+      color: red;
+    }
+
+    /* Top text starting from middle of screen */
+    .top-left-text {
+      position: fixed;
+      top: -15px;           /* 5px from top */
+      left: 50%;          /* start from middle */
+      transform: none;    /* no centering, just start at middle */
+      font-family: 'Arial Narrow', Arial, sans-serif;
+      font-size: 18px;
+      color: #ffffff;
+      line-height: 1.1;
+      white-space: pre-line;
+      z-index: 10;
+      text-align: left;   /* make sure text flows right */
+    }
+
+    /* Custom cursor */
+    .cursor {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: red;
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s ease, height 0.2s ease;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <video autoplay muted loop playsinline>
+      <source src="your-video.mp4" type="video/mp4">
+      <source src="your-video.webm" type="video/webm">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- About link -->
+  <a href="about.html" class="about-link">About</a>
+
+  <!-- Sound toggle (bottom-left) -->
+  <a href="#" class="sound-toggle">Sound On</a>
+
+  <!-- Top text starting from middle -->
+  <div class="top-left-text">
+Athens-based designer with a strong focus on typography, print, and visual systems — blending curiosity, experimentation, and clarity across projects for local and international clients.
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor"></div>
+
+  <script>
+    const cursor = document.querySelector('.cursor');
+    const video = document.querySelector('video');
+    const soundToggle = document.querySelector('.sound-toggle');
+
+    // Move cursor with mouse
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    // Grow cursor when hovering links or buttons
+    const hoverElements = document.querySelectorAll('a, button');
+    hoverElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '15px';
+        cursor.style.height = '15px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '10px';
+        cursor.style.height = '10px';
+      });
+    });
+
+    // Sound toggle functionality
+    soundToggle.addEventListener('click', (e) => {
+      e.preventDefault(); // prevent default link behavior
+      if (video.muted) {
+        video.muted = false;
+        soundToggle.textContent = 'Sound Off';
+      } else {
+        video.muted = true;
+        soundToggle.textContent = 'Sound On';
+      }
+    });
+
+    // Optional: grow cursor on hover for sound toggle
+    soundToggle.addEventListener('mouseenter', () => {
+      cursor.style.width = '15px';
+      cursor.style.height = '15px';
+    });
+    soundToggle.addEventListener('mouseleave', () => {
+      cursor.style.width = '10px';
+      cursor.style.height = '10px';
+    });
+  </script>
+</body>
+</html>
